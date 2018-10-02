@@ -1,0 +1,40 @@
+<div class="container-fluid wow fadeInUp">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="section-title">Manage Fish Price</h3>
+      <div class="section-title-divider"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover">
+          <tr>
+            <th>Fish</th>
+            <th>Category</th>
+            <th>Market Price</th>
+            <th>Our Price</th>
+          </tr>
+          <tr *ngFor="let fish of fishes">
+            <td>{{fish.Name}}</td>
+            <td>{{fish.Category}}</td>
+            <td>
+
+              <div class="form-group input-group">
+                <input type="number" class="form-control" placeholder="" [ngModel]="fish.MarketPrice">
+              </div>
+            </td>
+            <td>
+              <div class="form-group input-group">
+                <input type="number" class="form-control" placeholder="" [ngModel]="fish.OurPrice">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="form-group pull-right">
+        <button class="btn btn-success" type="button">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container-fluid wow fadeInUp">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="section-title">Locate Us</h3>
+      <div class="section-title-divider"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="border border-primary">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoomPercentage">
+          <agm-marker [latitude]="latitude" [longitude]="longitude">
+            <agm-info-window>KLD Fish Stall</agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2 class="about-title">KLD Fish Stall</h2>
+      <p class="about-text">
+        Wholesale, Retial &amp; Hotel Supply
+        <br>
+        Al-Rasool Complex, Shop No. 3
+        <br>
+        RK Road, Yeshwanthpur, Bangalore - 560022
+      </p>
+      <p class="about-text">
+        <strong>Phone Number(s)</strong>
+        <br>Khaleel:
+        +91-9633613221
+        +91-7760767763
+        <br> Haneefa:
+        +91-8078027391
+        <br> Latheef:
+        +91-8848597996
+      </p>
+    </div>
+  </div>
+</div>

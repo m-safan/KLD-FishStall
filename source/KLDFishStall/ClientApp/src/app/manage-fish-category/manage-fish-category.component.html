@@ -1,0 +1,79 @@
+<div class="container-fluid wow fadeInUp">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="section-title">Manage Fish Catagory</h3>
+      <div class="section-title-divider"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Add Fish Category
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label>Fish Category*</label>
+              <div class="form-group input-group">
+                <input type="text" ng-required="true" class="form-control" placeholder="Job ID" ng-model="fishCategory.Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Fish Category Description</label>
+              <div class="form-group input-group">
+                <textarea class="form-control" placeholder="Job Description" ng-model="fishCategory.Description"></textarea>
+              </div>
+            </div>
+            <div class="form-group pull-right">
+              <button class="btn" type="reset">Clear</button>
+              <button class="btn btn-success" type="button">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Available Fish Categories
+        </div>
+        <div class="card-body">
+          <div class="form-group pull-right">
+            <button class="btn btn-success" type="button"><i class="fa fa-plus"></i> Add</button>
+            <button class="btn btn-warning" type="button"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i> Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Manage Fishes and Fish Categories
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Fish Category*</label>
+            <div class="form-group input-group">
+              <select class="form-control" ng-model="fishesInCategory.FK_ID_FishCategory" (change)="onFishCategorySelectionChanged()">
+                <option *ngFor="let x of fishesInCategory.Source_Fishes">{{x}}</option>
+              </select>
+            </div>
+          </div>
+          <dual-list [height]="dualListHeight" [source]="fishesInCategory.Source_Fishes" [(destination)]="fishesInCategory.FK_ID_Fishes"></dual-list>
+          <br>
+          <div class="form-group pull-right">
+            <button class="btn btn-success" type="button">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
