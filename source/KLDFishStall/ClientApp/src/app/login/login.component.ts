@@ -4,7 +4,6 @@ import { SharedModelService, UserDTO } from '../shared-model.service';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Console } from '@angular/core/src/console';
 
 @Component({
   selector: 'app-login',
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         const x = JSON.parse(JSON.stringify(loginResponse));
         userDTO.Email = x.email;
         userDTO.Name = x.name;
-
+        
         this._httpClient.post<UserDTO>(this._sharedModel.BaseURI + 'api/User/SocialNewtowkLogin', userDTO).
           subscribe(
             result => {

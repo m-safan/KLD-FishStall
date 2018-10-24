@@ -38,12 +38,17 @@ namespace KLDFishStall
             var connection = @"Server=DESKTOP-HBVKN8A\MSSQLSERVERN;Database=KLDFishStall;Trusted_Connection=false;User=sa;Password=password@1";
             services.AddDbContext<KLDFishStallContext>(options => options.UseSqlServer(connection));
 
-            services
-               .AddMvc()
-               .AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); })
-               .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services
+            //   .AddMvc(action => {
+            //   })
+            //   .AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); })
+            //   .SetCompatibilityVersion(CompatibilityVersion.Version_2_1).;
 
             services.AddCors();
+
+            services
+               .AddMvc()
+               .AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); });
             //    .AddCors(options =>
             //{
 
@@ -68,6 +73,16 @@ namespace KLDFishStall
             }
 
             //app.UseHttpsRedirection();
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+                builder.AllowCredentials();
+                builder.Build();
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -89,14 +104,6 @@ namespace KLDFishStall
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
-            });
-
-            app.UseCors(builder =>
-            {
-                builder.AllowAnyHeader();
-                builder.AllowAnyMethod();
-                builder.AllowAnyOrigin();
-                builder.AllowCredentials();
             });
         }
     }
