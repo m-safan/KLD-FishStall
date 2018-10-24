@@ -11,7 +11,6 @@ namespace KLDFishStall.Attributues
             base.OnException(context);
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.HttpContext.Response.Headers.Add("access-control-allow-origin", "*");
             context.Result = new JsonResult(context.Exception);
         }
     }

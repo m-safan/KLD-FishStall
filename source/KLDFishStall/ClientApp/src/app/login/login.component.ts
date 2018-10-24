@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from 'angular2-social-login';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angular-6-social-login-v2';
 import { SharedModelService, UserDTO } from '../shared-model.service';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Console } from '@angular/core/src/console';
 
 @Component({
   selector: 'app-login',
@@ -45,18 +46,23 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._httpClient.post<UserDTO>(this._sharedModel.BaseURI + 'api/User/Login', userDTO).subscribe(
       result => {
         this._sharedModel.User = result;
-        console.log(JSON.stringify( this._sharedModel.User));
+        console.log(JSON.stringify(this._sharedModel.User));
         this._localStorage.set('userCredentails', JSON.stringify(this._sharedModel.User));
-        this._authService.logout().subscribe((logoutResponse) => {
-          this._router.navigate(['/home']);
-        });
+        this._router.navigate(['/home']);
       },
       error => { console.error(error); }
     );
   }
 
   SocialNewtowkLogin(provider) {
-    this._sub = this._authService.login(provider).subscribe(
+    let socialPlatformProvider;
+    if (provider === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (provider === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+
+    this._authService.signIn(socialPlatformProvider).then(
       (loginResponse) => {
         const userDTO: UserDTO = new UserDTO();
         const x = JSON.parse(JSON.stringify(loginResponse));
@@ -68,7 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             result => {
               this._sharedModel.User = result;
               this._localStorage.set('userCredentails', JSON.stringify(this._sharedModel.User));
-              this._authService.logout().subscribe((logoutResponse) => {
+              this._authService.signOut().then(() => {
                 this._router.navigate(['/home']);
               });
             },
@@ -76,6 +82,27 @@ export class LoginComponent implements OnInit, OnDestroy {
           );
       }
     );
+
+    // this._sub = this._authService.login(provider).subscribe(
+    //   (loginResponse) => {
+    //     const userDTO: UserDTO = new UserDTO();
+    //     const x = JSON.parse(JSON.stringify(loginResponse));
+    //     userDTO.Email = x.email;
+    //     userDTO.Name = x.name;
+
+    //     this._httpClient.post<UserDTO>(this._sharedModel.BaseURI + 'api/User/SocialNewtowkLogin', userDTO).
+    //       subscribe(
+    //         result => {
+    //           this._sharedModel.User = result;
+    //           this._localStorage.set('userCredentails', JSON.stringify(this._sharedModel.User));
+    //           this._authService.logout().subscribe((logoutResponse) => {
+    //             this._router.navigate(['/home']);
+    //           });
+    //         },
+    //         error => console.error(error)
+    //       );
+    //   }
+    // );
   }
 
   ngOnDestroy(): void {

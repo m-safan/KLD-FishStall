@@ -10,7 +10,7 @@
           <ul class="nav-menu">
               <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/home"]'>Home</a></li>
               <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/shop"]'>Shop</a></li>
-              <li *ngIf="_sharedModel.User != null && (_sharedModel.User.Role == 'admin' || _sharedModel.User.Role == 'operator')" class="menu-has-children">
+              <li *ngIf="_sharedModel.User != null && (_sharedModel.User.Role == 'Admin' || _sharedModel.User.Role == 'Operator')" class="menu-has-children">
                   <a [routerLink]='[]'>Manage</a>
                   <ul>
                       <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/manage-fish-category"]'>Manage Fish Category</a></li>

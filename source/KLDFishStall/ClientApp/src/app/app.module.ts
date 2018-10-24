@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
-import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, } from 'angular-6-social-login-v2';
 
 import { AppComponent } from './app.component';
 import { HeroComponent } from './hero/hero.component';
@@ -30,6 +30,23 @@ const providers = {
     'apiVersion': 'v3.1'
   }
 };
+
+// Configs
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider('2188347224710963')
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('817457529289-o2ul09vsp8crt38i0qiun17u1upk3n6s.apps.googleusercontent.com')
+      }
+    ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -65,15 +82,16 @@ const providers = {
       apiKey: 'AIzaSyCE5Tc1kO3RHG7ANTqbPuf84FKRcQACVBk'
     }),
     AngularDualListBoxModule,
-    Angular2SocialLoginModule,
+    SocialLoginModule,
     LocalStorageModule.withConfig({
       prefix: 'my-app',
       storageType: 'localStorage'
     })
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-Angular2SocialLoginModule.loadProvidersScripts(providers);
