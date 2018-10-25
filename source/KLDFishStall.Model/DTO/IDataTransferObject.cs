@@ -7,5 +7,7 @@ namespace KLDFishStall.Model.DTO
     public interface IDataTransferObject<T> where T : class
     {
         T Map();
+
+        void GetInnerDetails(IUnitOfWork unitOfWork);
     }
 }

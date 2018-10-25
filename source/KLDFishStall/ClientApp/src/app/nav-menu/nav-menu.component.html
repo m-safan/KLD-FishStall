@@ -1,37 +1,42 @@
 <header id="header">
-  <div class="container">
-      <div id="logo" class="pull-left">
-          <!-- <img src="assets/img/logo.png" alt="" title="" /> -->
-          <!-- Uncomment below if you prefer to use a text image -->
-          <h1><a [routerLink]='[""]'>KLD Fish Stall</a></h1>
-      </div>
+    <div class="container">
+        <div id="logo" class="pull-left">
+            <!-- <img src="assets/img/logo.png" alt="" title="" /> -->
+            <!-- Uncomment below if you prefer to use a text image -->
+            <h1><a [routerLink]='[""]'>KLD Fish Stall</a></h1>
+        </div>
 
-      <nav id="nav-menu-container">
-          <ul class="nav-menu">
-              <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/home"]'>Home</a></li>
-              <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/shop"]'>Shop</a></li>
-              <li *ngIf="_sharedModel.User != null && (_sharedModel.User.Role == 'Admin' || _sharedModel.User.Role == 'Operator')" class="menu-has-children">
-                  <a [routerLink]='[]'>Manage</a>
-                  <ul>
-                      <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/manage-fish-category"]'>Manage Fish Category</a></li>
-                      <li><a href="">Add New Fish</a></li>
-                      <li><a href="">Manage / Edit Fish</a></li>
-                      <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/manage-fish-price"]'>Manage Fish Price</a></li>
-                  </ul>
-              </li>
-              <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/locate-us"]'>Locate Us</a></li>
-              <li class="menu-has-children">
-                  <a [routerLink]='[]'>{{_sharedModel.User == null ? 'My Profile' : _sharedModel.User.Name}}</a>
-                  <ul>
-                      <li *ngIf="_sharedModel.User == null" [routerLinkActive]='["menu-active"]'><a [routerLink]='["/login"]'>Login</a></li>
-                      <li *ngIf="_sharedModel.User != null"><a href="">My Orders</a></li>
-                      <li *ngIf="_sharedModel.User != null"><a href="">My Profile</a></li>
-                      <li *ngIf="_sharedModel.User != null"><a href="">Change Password</a></li>
-                      <li *ngIf="_sharedModel.User != null"><a [routerLink]='["/logout"]'>Logout</a></li>
-                  </ul>
-              </li>
-          </ul>
-      </nav>
-      <!-- #nav-menu-container -->
-  </div>
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/home"]'>Home</a></li>
+                <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/shop"]'>Shop</a></li>
+                <li *ngIf="_sharedModel.User != null && (_sharedModel.User.Role == 'Admin' || _sharedModel.User.Role == 'Operator')"
+                    class="menu-has-children">
+                    <a [routerLink]='[]'>Manage</a>
+                    <ul>
+                        <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/manage-fish-category"]'>Manage
+                                Fish Category</a></li>
+                        <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/add-fish"]'>Add New Fish</a></li>
+                        <li><a href="">Manage / Edit Fish</a></li>
+                        <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/manage-fish-price"]'>Manage Fish
+                                Price</a></li>
+                    </ul>
+                </li>
+                <li [routerLinkActive]='["menu-active"]'><a [routerLink]='["/locate-us"]'>Locate Us</a></li>
+                <li class="menu-has-children">
+                    <a [routerLink]='[]'>
+                        <img class="img-profile" *ngIf="_sharedModel.User != null && _sharedModel.User.ImageURL != ''" src="{{_sharedModel.User.ImageURL}}" />
+                        {{_sharedModel.User == null ? 'My Profile' : _sharedModel.User.Name}}</a>
+                    <ul>
+                        <li *ngIf="_sharedModel.User == null" [routerLinkActive]='["menu-active"]'><a [routerLink]='["/login"]'>Login</a></li>
+                        <li *ngIf="_sharedModel.User != null"><a href="">My Orders</a></li>
+                        <li *ngIf="_sharedModel.User != null"><a href="">My Profile</a></li>
+                        <li *ngIf="_sharedModel.User != null"><a href="">Change Password</a></li>
+                        <li *ngIf="_sharedModel.User != null"><a [routerLink]='["/logout"]'>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- #nav-menu-container -->
+    </div>
 </header>

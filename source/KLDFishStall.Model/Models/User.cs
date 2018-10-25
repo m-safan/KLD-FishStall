@@ -17,6 +17,7 @@ namespace KLDFishStall.Model.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
+        public string ImageUrl { get; set; }
 
         public ICollection<Order> OrderFkIdUserConfirmedByNavigation { get; set; }
         public ICollection<Order> OrderFkIdUserDeleveredByNavigation { get; set; }

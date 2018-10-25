@@ -4,7 +4,6 @@ using KLDFishStall.Service;
 using KLDFishStall.Service.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +33,7 @@ namespace KLDFishStall
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IFishService, FishService>();
 
             var connection = @"Server=DESKTOP-HBVKN8A\MSSQLSERVERN;Database=KLDFishStall;Trusted_Connection=false;User=sa;Password=password@1";
             services.AddDbContext<KLDFishStallContext>(options => options.UseSqlServer(connection));

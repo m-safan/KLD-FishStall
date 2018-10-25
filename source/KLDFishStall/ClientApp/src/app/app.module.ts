@@ -20,18 +20,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { RegisterComponent } from './register/register.component';
 import { ShopComponent } from './shop/shop.component';
 import { TruncateString } from './truncate-string.service';
+import { AddFishComponent } from './add-fish/add-fish.component';
 
-const providers = {
-  'google': {
-    'clientId': '817457529289-o2ul09vsp8crt38i0qiun17u1upk3n6s.apps.googleusercontent.com'
-  },
-  'facebook': {
-    'clientId': '2188347224710963',
-    'apiVersion': 'v3.1'
-  }
-};
-
-// Configs
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
@@ -61,7 +51,8 @@ export function getAuthServiceConfigs() {
     NavMenuComponent,
     RegisterComponent,
     ShopComponent,
-    TruncateString
+    TruncateString,
+    AddFishComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +67,8 @@ export function getAuthServiceConfigs() {
       { path: 'manage-fish-price', component: ManageFishPriceComponent },
       { path: 'login', component: LoginComponent },
       { path: 'logout', component: LogoutComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'add-fish', component: AddFishComponent }
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCE5Tc1kO3RHG7ANTqbPuf84FKRcQACVBk'

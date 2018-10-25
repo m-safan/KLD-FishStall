@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace KLDFishStall.Model.Models
 {
@@ -22,13 +24,12 @@ namespace KLDFishStall.Model.Models
         public virtual DbSet<OrderItem> OrderItem { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__Category__737584F628C7DDDD")
+                    .HasName("UQ__Category__737584F66570C18A")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -41,7 +42,7 @@ namespace KLDFishStall.Model.Models
             modelBuilder.Entity<Fish>(entity =>
             {
                 entity.HasIndex(e => e.FkIdFishAttributes)
-                    .HasName("UQ__Fish__CF96F83C3E148DF2")
+                    .HasName("UQ__Fish__CF96F83C21A895F2")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -62,12 +63,13 @@ namespace KLDFishStall.Model.Models
             modelBuilder.Entity<FishAttributes>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.OtherNames).HasMaxLength(200);
 
-                entity.Property(e => e.Units).HasMaxLength(50);
+                entity.Property(e => e.NetWeight).HasMaxLength(50);
+
+                entity.Property(e => e.NetWeight).HasMaxLength(50);
             });
 
             modelBuilder.Entity<FishCategory>(entity =>
@@ -122,19 +124,19 @@ namespace KLDFishStall.Model.Models
                     .WithMany(p => p.OrderFkIdUserConfirmedByNavigation)
                     .HasForeignKey(d => d.FkIdUserConfirmedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Order__FK_ID_Use__24927208");
+                    .HasConstraintName("FK__Order__FK_ID_Use__239E4DCF");
 
                 entity.HasOne(d => d.FkIdUserDeleveredByNavigation)
                     .WithMany(p => p.OrderFkIdUserDeleveredByNavigation)
                     .HasForeignKey(d => d.FkIdUserDeleveredBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Order__FK_ID_Use__25869641");
+                    .HasConstraintName("FK__Order__FK_ID_Use__24927208");
 
                 entity.HasOne(d => d.FkIdUserOrderedByNavigation)
                     .WithMany(p => p.OrderFkIdUserOrderedByNavigation)
                     .HasForeignKey(d => d.FkIdUserOrderedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Order__FK_ID_Use__239E4DCF");
+                    .HasConstraintName("FK__Order__FK_ID_Use__22AA2996");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
@@ -149,19 +151,19 @@ namespace KLDFishStall.Model.Models
                     .WithMany(p => p.OrderItem)
                     .HasForeignKey(d => d.FkIdFish)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderItem__FK_ID__29572725");
+                    .HasConstraintName("FK__OrderItem__FK_ID__286302EC");
 
                 entity.HasOne(d => d.FkIdOrderNavigation)
                     .WithMany(p => p.OrderItem)
                     .HasForeignKey(d => d.FkIdOrder)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderItem__FK_ID__286302EC");
+                    .HasConstraintName("FK__OrderItem__FK_ID__276EDEB3");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D10534FC6C6806")
+                    .HasName("UQ__User__A9D1053429DEF627")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -169,6 +171,10 @@ namespace KLDFishStall.Model.Models
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.ImageUrl)
+                    .HasColumnName("ImageURL")
+                    .HasMaxLength(200);
 
                 entity.Property(e => e.Name)
                     .IsRequired()

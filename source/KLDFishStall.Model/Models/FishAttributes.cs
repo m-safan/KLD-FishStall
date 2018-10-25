@@ -8,9 +8,8 @@ namespace KLDFishStall.Model.Models
         public long Id { get; set; }
         public string OtherNames { get; set; }
         public string Description { get; set; }
-        public double? NetWeight { get; set; }
-        public double? GrossWeight { get; set; }
-        public string Units { get; set; }
+        public string NetWeight { get; set; }
+        public string GrossWeight { get; set; }
 
         public Fish Fish { get; set; }
     }

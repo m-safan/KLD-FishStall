@@ -1,0 +1,67 @@
+<div class="container-fluid wow fadeInUp">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="section-title">Add Fish</h3>
+      <div class="section-title-divider"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="form-group">
+        <label>Name*</label>
+        <div class="form-group input-group">
+          <input type="text" ng-required="true" class="form-control" placeholder="Fish Name" [(ngModel)]="_fish.Name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Other Names*</label>
+        <div class="form-group input-group">
+          <input type="text" ng-required="true" class="form-control" placeholder="Other commonly used names"
+            [(ngModel)]="_fish.FishAttributes.OtherNames">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Description*</label>
+        <div class="form-group input-group">
+          <textarea ng-required="true" class="form-control" [(ngModel)]="_fish.FishAttributes.Description"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Market Price</label>
+        <div class="form-group input-group">
+          <input type="number" class="form-control" placeholder="Market price" [(ngModel)]="_fish.MarketPrice">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Our Price*</label>
+        <div class="form-group input-group">
+          <input type="number" class="form-control" placeholder="Our price" [(ngModel)]="_fish.OurPrice">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Net Weight*</label>
+        <div class="form-group input-group">
+          <input type="number" class="form-control" placeholder="Net weight" [(ngModel)]="_fish.FishAttributes.NetWeight">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Gross Weight*</label>
+        <div class="form-group input-group">
+          <input type="number" class="form-control" placeholder="Gross weight" [(ngModel)]="_fish.FishAttributes.GrossWeight">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn" type="reset">Clear</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-success" type="button" (click)="AddFish()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
